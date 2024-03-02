@@ -1,0 +1,26 @@
+\section{矩阵分解}
+\subsection{奇异值分解}
+我们首先引入矩阵的奇异值的概念.
+\begin{definition}
+设$A\in \mathbb R^{m\times n},r(A)=r$，由$X^T(A^TA)X=(AX)^T(AX)\geq 0$可知$A^TA$（或$AA^T$）是一个半正定矩阵，并且$r(A^TA)=r(AA^T)=r$；定义$A$的奇异值为$A^TA$（或$AA^T$）的$r$个正特征值的算术平方根。
+\end{definition}
+下面我们给出奇异值分解定理:
+\begin{theorem}{\textbf{(奇异值分解/SVD)}}\label{Thm2.1}
+设$A\in\mathbb R^{m\times n},r(A)=r$，则存在$m$阶正交矩阵$U$和$n$阶正交矩阵$V$使得$A=UDV^T$，其中$D=\begin{pmatrix} \Lambda & \mathbf 0 \\ \mathbf 0 & \mathbf 0 \end{pmatrix},\Lambda=\mathrm{diag}(\sigma_1,\cdots,\sigma_r)$，$\sigma_1,\cdots,\sigma_r$为$A$的全部奇异值。称$U$（或$V$）的列向量为$A$的左（或右）奇异向量。
+\end{theorem}
+我们给两个计算奇异值分解的例子:
+\begin{example}
+\begin{enumerate}
+    \item 求$A=\begin{pmatrix} 3 \\ 4 \end{pmatrix}$的一个奇异值分解。 
+    \item 求$A=\begin{pmatrix} 1&0&1 \\ 
+        0&1&-1 \end{pmatrix}$的一个奇异值分解。
+\end{enumerate}
+\end{example}
+约化的奇异值分解
+\begin{definition}
+利用分块矩阵乘法可将SVD分解写为$A=\sum\limits_{i=1}^r \sigma_iu_iv_i^T$，这被称为$A$的奇异值分解展开，注意到其中每一项都是一个秩一矩阵；再还原为矩阵可得到约化的SVD分解：$A=U_r\Lambda V_r^T$，其中$U_r,V_r$分别为$U,V$的前$r$列构成，称为列正交矩阵，$\Lambda$同上为全部奇异值所构成的$r$阶对角阵。        
+\end{definition}
+极分解
+\begin{definition}
+任一实方阵$A$都可分解为一个半正定矩阵和一个正交矩阵的乘积（或反过来）：$A=S_1Q_1$（或者$A=Q_2S_2$）。其中$S_1$（或$S_2$）被$A$唯一决定；如果$A$可逆，则$S_1$（或$S_2$）正定且$Q_1$（或$Q_2$）也被$A$唯一决定。
+\end{definition}

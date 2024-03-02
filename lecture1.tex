@@ -1,0 +1,121 @@
+\section{特征值与主成分分析}
+\subsection{Rayleigh商}
+我们回顾一个高等代数课程中的结论: 
+\begin{theorem}\label{Thm1.1}
+设$A\in \mathbb R^{n\times n}$为对称矩阵，则存在$n$阶正交阵$U$使得$A=UDU^T$，其中$D=\mathrm{diag}(\lambda_1,\cdots,\lambda_n)$是由$A$的$n$个实特征值构成的对角阵，$U$的列向量即为属于这些特征值的互相正交的单位特征向量。
+\end{theorem}
+该定理我们暂时不证, 我们将在定理\ref{Thm2.1}中证明一个更强的结论.\par
+我们考察特征值估计的问题. 先看下面的定理:
+\begin{theorem}{\textbf{(Rayleigh商)}}\label{Thm1.2}
+设$A\in \mathbb R^{n\times n}$为对称矩阵，特征值为$\lambda_1\geq \cdots \geq \lambda_n$，则
+$$\lambda_n \leq \frac{x^TAx}{x^Tx} \leq\lambda_1,\;\;\;\forall \;\;\mathbf 0 \neq x\in \mathbb R^n.$$
+左右两个等号成立当且仅当$x$分别为属于$\lambda_n$和$\lambda_1$的特征向量，上述分式被称为Rayleigh（瑞利）商。
+\end{theorem}
+\begin{proof}
+不妨设$\|x\|=1$, 这里$\|\cdot\|$为向量$x$的Euclid范数, 否则考虑$y=x/\|x\|$. 应用定理\ref{Thm1.1}, 于是我们只要证
+$$
+\lambda _n\le x^{\mathrm{T}}UDU^{\mathrm{T}}x=\left( U^{\mathrm{T}}x \right) ^{\mathrm{T}}D\left( U^{\mathrm{T}}x \right) \le \lambda _1.
+$$
+令$w=U^{\mathrm{T}}x$, 由于$U$是正交矩阵, 我们有$\|w\|=\|x\|=1$. 因此若$w=(w_1,\cdots,w_n)^\mathrm{T}$, 那么我们有
+$$
+w^{\mathrm{T}}Dw=\sum_{i=1}^n{w_{i}^{2}\lambda _i},
+$$
+进而
+$$
+\lambda _n=\lambda _n\cdot \sum_{i=1}^n{w_{i}^{2}}\le \sum_{i=1}^n{w_{i}^{2}\lambda _i}\le \lambda _1\cdot \sum_{i=1}^n{w_{i}^{2}}=\lambda _1.
+$$
+下面我们说明等号成立条件. 我们证明$\frac{x^\mathrm{T}Ax}{x^\mathrm{T}x}=\lambda_i$当且仅当$x$是$\lambda_i$的特征向量. 一方面我们注意到
+$$
+\frac{x^{\mathrm{T}}Ax}{x^{\mathrm{T}}x}=\frac{x^{\mathrm{T}}\lambda _ix}{x^{\mathrm{T}}x}=\lambda _i\cdot \frac{x^{\mathrm{T}}x}{x^{\mathrm{T}}x}=\lambda _i,
+$$
+而另一方面我们有
+$$
+\lambda _ix=x\cdot \frac{x^{\mathrm{T}}Ax}{x^{\mathrm{T}}x}=\frac{xx^{\mathrm{T}}}{x^{\mathrm{T}}x}\cdot Ax=\frac{\left\| x \right\| ^2}{\left\| x \right\| ^2}\cdot Ax=Ax,
+$$
+这就完成了证明.
+\end{proof}
+更进一步, 我们可以把定理\ref{Thm1.2}做如下推广: 
+\begin{corollary}
+设$A\in \mathbb R^{n\times n}$为对称矩阵，特征值为$\lambda_1\geq \cdots \geq \lambda_n$，$\eta_1$为属于$\lambda_1$的特征向量，设$x \in \mathbb R^n$为任意与$\eta_1$正交的非零向量，则有
+$$\max \frac{x^TAx}{x^Tx}=\lambda_2,$$
+等号成立当且仅当$x$为属于$\lambda_2$的特征向量； 一般地，对于$2\leq k \leq n$假设已选定$\eta_1,\cdots,\eta_{k-1}$为属于$\lambda_1,\cdots,\lambda_{k-1}$的特征向量且互相正交，$x \in \mathbb R^n$为任意与$\eta_1,\cdots,\eta_{k-1}$都正交的非零向量，则有 
+$$\max \frac{x^TAx}{x^Tx}=\lambda_k,$$
+等号成立当且仅当$x$为属于$\lambda_k$的特征向量。
+\end{corollary}
+该推论的证明是容易的, 我们略去相关细节.\par
+\subsection{Gerschgorin圆盘定理}
+我们补充另一个常见的估计特征值的定理. 这一部分的内容来自\cite{姚慕生2008高等代数学}第六章.
+\begin{theorem}{\textbf{(Gerschgorin圆盘第一定理)}}
+设$A\in\mathrm{Mat}_n(\mathbb{C})$, $A=(a_{ij})_{n\times n}$, 则$A$的特征值在复平面商的下列圆盘中: 
+\begin{equation}\label{1.1}
+|z-a_{ii}|\le R_i,i=1,2,\cdots,n.
+\end{equation}
+我们称\eqref{1.1}中的圆盘为\textbf{Gerschgorin圆盘}.
+\end{theorem}
+\begin{proof}
+设$\lambda$为$A$的一个特征值, $\xi$为属于$\lambda$的特征向量, 那么我们有$A\xi=\lambda\xi$. 记$\xi=(x_1,\cdots,x_n)^\mathrm{T}$, 我们有
+$$
+\sum_{j=1}^n{a_{ij}x_j}=\lambda x_i,\hspace{0.5cm}1\le i\le n.
+$$
+设$\max_{1\le i\le n}\{|x_1|,\cdots,|x_n|\}=|x_r|$, 那么我们有
+$$
+\left( \lambda -a_{rr} \right) x_r=\sum_{j\ne r}{a_{rj}x_j},
+$$
+从而
+$$
+\left| \lambda -a_{rr} \right|\cdot \left| x_r \right|\le \sum_{j\ne r}{\left| a_{rj} \right|\cdot \left| x_j \right|}\le \left( \sum_{j\ne r}{\left| a_{rj} \right|} \right) \cdot \left| x_r \right|=R_r\left| x_r \right|.
+$$
+显然$|x_r|\ne 0$, 因此$|\lambda-a_{rr}|\le R_r$, 这就完成了证明.
+\end{proof}
+\begin{theorem}{\textbf{(Gerschgorin圆盘第二定理)}}
+设矩阵$A=(a_{ij})_{n\times n}$的$n$个Gerschgorin圆盘分成若干个连通区域, 若其中一个连通区域含有$k$个Gerschgorin圆盘, 则有且只有$k$个特征值落在这个连通区域内(若两个Gerschgorin圆盘重合, 需计重数; 又若特征值为复根, 也计重数).
+\end{theorem}
+\begin{note}
+下面所展示的证明是主流文献中的证明(见\cite{horn2012matrix}第六章), 注意证明中所谓的"连续变化"并不严谨. 这个细节可以补上但论证过程较为复杂(见\ref{Sec1.4}), 我们在这里采用主流文献中证法,.
+\end{note}
+\begin{proof}
+我们设$A=D+B$, 其中$D=\mathrm{diag}\{a_{11},\cdots,a_{nn}\}$. 考察$A_\varepsilon=D+\varepsilon B$, 其中$\varepsilon\in[0,1]$. 记$R_i(A_\varepsilon)=\varepsilon\sum_{j\ne i}|a_{ij}|$, 因此
+$$
+\left\{ z\in \mathbb{C} :\left| z-a_{ii} \right|\le R_i\left( A_{\varepsilon} \right) \right\} \subset \left\{ z\in \mathbb{C} :\left| z-a_{ii} \right|\le R_i\left( A \right) \right\} ,
+$$
+这里$R_i(A)=R_i(A_\varepsilon)/\varepsilon$. 如果我们记
+$$
+G\left( A \right) =\bigcup_{i=1}^n{\left\{ z\in \mathbb{C} :\left| z-a_{ii} \right|\le R_i\left( A \right) \right\}},
+$$
+那么$G(A_\varepsilon)\subset G(A)$. 现在不妨设前$k$个Gerschgorin圆盘构成一个连通分支, 我们只要证明这$k$个圆盘中包含$k$个特征值. 记这个连通分支为$G$, 则$G$包含$a_{11},\cdots,a_{kk}$. 现在考察$f(\varepsilon)=A_\varepsilon$在从$\varepsilon=0$变动到$1$的前$k$个特征值的连续变化, 我们有终点的这$k$的特征值仍然落在这个连通分支内(否则连续变化中会有一点落在$G(A)$外), 因此这个连通分支中至少有$k$个特征值.
+\end{proof}
+\subsection{主成分分析(PCA)}
+我们来看定理\ref{Thm1.2}的一个应用.
+\begin{example}{\textbf{主成分分析(PCA)}}\par
+主成分分析是数据处理中一种重要的降维技巧. 我们期望将$\mathbb R^n$中的数据点集投影到一个$d$维子空间的情况下尽可能多地保留原数据集的信息. 下面提供了一种寻找主成分的处理方式.\par
+以下讨论假设数据集的均值为零。设单位向量$\eta_1$为使得数据集$\{\alpha_i\}_{i=1}^m$的样本方差最大的方向，将数据集在其上的投影看做一维数据，其坐标为$\mathrm{Proj}_{\eta_1}\alpha_i=\alpha_i^T\eta_1$，从而样本方差为$$\frac{1}{m-1}\sum\limits_{i=1}^m(\alpha_i^T\eta_1-0)^2=\frac{1}{m-1}(A^T\eta_1)^T(A^T\eta_1)=\eta_1^T(\frac{1}{m-1}AA^T)\eta_1,$$
+这里$A=(\alpha_1 , \cdots , \alpha_m)$为数据矩阵。设$\lambda_1\geq \cdots \geq \lambda_n$为$\frac{1}{m-1}AA^T$的特征值，由定理可知，$\eta_1$为属于$\lambda_1$的单位特征向量。对于变量$x=(x_1,\cdots,x_n)$，称$y_1=\mathrm{Proj}_{\eta_1}x=\eta_1^T x$为第一主成分，它表示将$x$投影到第一主成分方向$\eta_1$上的坐标；第二主成分所在方向$\eta_2$应该和$\eta_1$正交（从而相关系数为零，即不同的主成分之间线性不相关），并且同样使得投影数据的样本方差达到最大，由推广结论可知，$\eta_2$为属于$\lambda_2$的且与$\eta_1$正交的单位特征向量，由此得到第二主成分$y_2=\eta_2^Tx$，并依此类推。
+\end{example}
+\subsection{对Gerschgorin第二圆盘定理的补充说明}\label{Sec1.4}
+我们在这一部分严格证明Gerschgorin第二圆盘定理. 为此, 我们只要证明下面的引理:
+\begin{lemma}
+设$f(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0$是$n$次复系数多项式, 则$f(z)$的$n$个根$\lambda_1,\cdots,\lambda_n$都是$a_n,\cdots,a_0$的连续函数.
+\end{lemma}
+我们采用两种证法. 第一种是利用复分析中的Rouché定理(\cite{蒋尔雄1978线性代数}), 第二种则采用代数几何的观点(\cite{whitneycomplex})来处理.\par
+\begin{proof}{\textbf{(复分析方法)}}
+取$\Omega$为$\mathbb{C}$中的一个简单开区域, 满足$f$的全体零点落在$\Omega$内部. 令
+$$
+g\left( z \right) =\tilde{a}_nz^n+\tilde{a}_{n-1}z^{n-1}+\cdots +\tilde{a}_1z+\tilde{a}_0,
+$$
+其中$|\tilde{a}_i-a_i|<\delta$, 这里$\delta$待定. 设$\lambda_i$是$f(z)$的一个根, 对任意给定的$\varepsilon>0$, 不妨设$\varepsilon<\mathrm{dist}(\lambda_i,\partial\Omega)$, 我们考察$D(\lambda_i,\varepsilon)$. 那么
+$$
+\left| f\left( z \right) -g\left( z \right) \right|\le \left| a_n-\tilde{a}_n \right|\cdot \left| z \right|^n+\cdots +\left| a_1-\tilde{a}_1 \right|\cdot \left| z \right|+\left| a_0-\tilde{a}_0 \right|\le \delta \cdot \sum_{i=0}^n{\left( \lambda _i+\varepsilon \right) ^i},
+$$
+因此如果我们取
+$$
+\delta <\max_{D\left( \lambda _i,\varepsilon \right)} \left| f\left( z \right) \right|/\sum_{i=0}^n{\left( \lambda _i+\varepsilon \right) ^i},
+$$
+就有$|f(z)-g(z)|<|f(z)|$, 因此由Rouché定理(见\cite{rudin_2015_real})就有$f$和$g$在$D(\lambda,\varepsilon)$上有相同的零点个数. 由$\varepsilon$的任意性就完成了证明.
+\end{proof}
+\begin{proof}{\textbf{(代数几何方法)}}
+我们不妨只考虑首一复系数多项式. 对每个首一复系数多项式, 我们可以建立一个对应$(\lambda_1,\cdots,\lambda_n)\mapsto (a_1,\cdots,a_n)$, 其中$a_1,\cdots,a_n$为$f$的系数, $\lambda_1,\cdots,\lambda_n$为$f$的根. 由此诱导了一个映射$\phi:\mathbb{C}^n\to\mathbb{C}^n$. 由于$f$的根在$S_n$作用下不改变$f$($S_n$-invariant), 因此我们只要证明$\mathbb{C}^n/S_n\simeq\mathbb{C}^n$.\par
+显然$\psi:\mathbb{C}^n/S_n\to\mathbb{C}^n$是连续映射. 我们考虑映射$f:(x_1,\cdots,x_n)\mapsto(f_1(x),\cdots,f_n(x))$, 其中$f_i$是$i$次初等对称多项式. 我们只要证明对每个$x\in\mathbb{C}^n$, 其前置(preimage)$f^{-1}(x)$恰好为$x$在$S_n$作用下的轨道$S_n\cdot x$. 显然如果$x\in f^{-1}(z)$, 那么$S_n\cdot x\subset f^{-1}(z)$. 为了证明$f^{-1}(z)$恰好就是$S_n\cdot x$, 我们考虑两条轨道$S_n\cdot x$和$S_n\cdot y$, 并取$\theta\in\mathbb{C}[x_1,\cdots,x_n]$使得$\theta(x)=0$, $\theta(w)\ne 0$, 这里$w\in S_n\cdot y$. 考察
+$$\overline{\theta}(w)=\prod_{\sigma\in S_n}\theta(\sigma\cdot w),$$
+那么$\theta$是对称多项式且分点$x$, $y$. 因此由对称多项式基本定理(见\cite{hungerford2012algebra}5.2节附录)我们有$\overline{\theta}$可以写成$f_i$的多项式. 特别地, 存在$f_i$使得$f_i$分点$x$和$y$, 从而存在$z\in\mathbb{C}$使得$x$和$y$不落在同一个前置$f^{-1}(z)$中.\par
+最后我们说明对每个$z\in\mathbb{C}^n$, 其前置$f^{-1}(z)$总是存在的. 注意到初等对称函数是代数无关的(Chevalley–Shephard–Todd定理, 见\cite{chevalley1955invariants}), 因此$f_i(x)=z_i$定义了一个$n-n=0$维的簇, 即一个有限点集. 至此, 我们完成了证明.
+\end{proof}

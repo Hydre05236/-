@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{ctex}
+\usepackage{latexsym}
+\usepackage{biblatex}
+\addbibresource{ref.bib}
+\usepackage{booktabs}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs}
+\usepackage{geometry}
+\usepackage[nameinlink]{cleveref}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+\everymath{\displaystyle}
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}{命题}[section]
+\newtheorem{example}{例}[section]
+\newtheorem{problem}{习题}[section]
+\newtheorem{note}{注}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{corollary}{推论}[section]
+\newtheorem{question}{问题}[section]
+\title{\textbf{矩阵理论与应用: 课程笔记}}
+\author{南京审计大学\hspace{0.5cm}赵鸿霏}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\begin{center}
+\begin{huge}
+     \textbf{前言}
+\end{huge}
+\end{center}
+本笔记是对康云凌老师给大二数学班开设的"矩阵理论与应用"的记录, 并对内容做了一些补充.\par
+注意: 因为部分定理的表述是笔者直接复制康老师提供的LaTeX代码, 而证明则为笔者所补充, 因此大部分情况下定理的表述中标点是中文标点, 而其他内容中标点是英文标点(笔者之前觉得码公式的时候要把输入法中英文调来调去很麻烦, 因此索性全部改成英文标点了). 笔者认为这无伤大雅, 因此没有做调整.\par
+我们指出一些符号和记号上的约定. 由于笔者和康老师的习惯符号略有差别, 我们将可能引起混淆的记号列在下面的表中供读者查阅.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \toprule
+        符号含义 & 笔者习惯的符号 & 康老师习惯的符号 \\
+        \midrule
+        矩阵$A$的秩 & $\mathrm{rank}A$ & $r(A)$ \\
+        域$\mathbb{F}$上的全体$n\times m$阶矩阵 & $\mathrm{Mat}_{n\times m}(\mathbb{F})$ & $\mathbb{F}^{n\times m}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}\par
+\textbf{康云凌老师yyds!}
+\begin{flushright}
+    \begin{tabular}{c}
+        赵鸿霏\\
+        南京审计大学\\
+        \today
+    \end{tabular}
+\end{flushright}
+\newpage
+\input{lecture1}
+\newpage
+\input{lecture2}
+\newpage
+\printbibliography
+\end{document}
